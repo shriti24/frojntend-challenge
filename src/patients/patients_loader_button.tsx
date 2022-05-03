@@ -1,15 +1,12 @@
-import { FunctionComponent } from "react";
-import { Patient } from "./patients";
+import { FunctionComponent } from 'react';
+import { Patient } from './patients';
 
 type props = {
   loadPatients: () => Promise<Patient[]>;
   onLoaded: (ps: Patient[]) => void;
 };
 
-export const PatientsLoader: FunctionComponent<props> = ({
-  loadPatients,
-  onLoaded,
-}) => {
+export const PatientsLoader: FunctionComponent<props> = ({ loadPatients, onLoaded }) => {
   const makeRequest = () => {
     loadPatients()
       .then((ps) => onLoaded(ps))

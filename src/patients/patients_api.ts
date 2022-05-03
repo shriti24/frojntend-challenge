@@ -12,12 +12,12 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
       return new Promise<Patient[]>(async (resolve, reject) => {
         // Block for 1s
         await sleep(1000);
-        
+
         // Random flakiness
         if (Math.random() <= 0.5) {
           reject("a network error occurred");
           return;
-        }        
+        }
 
         fetch(baseUrl + `/data/patients.json`)
           .then((response) => response.json())
@@ -52,6 +52,7 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
       });
     },
     Search: (query) => {
+  console.log(query );
       return new Promise<Patient[]>(async (resolve, reject) => {
         // Block for 1s
         await sleep(1000);
@@ -59,7 +60,7 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
           // An empty query results in no
           // search results
           resolve([]);
-        }        
+        }
         fetch(baseUrl + `/data/patients.json`)
           .then((response) => response.json())
           .then((json) => {
